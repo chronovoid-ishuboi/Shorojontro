@@ -344,20 +344,7 @@ void draw_game_screen(SDL_Renderer* ren, int mx, int my, int m_click) {
         }
     }
     
-    // Help block
-    if (app.showHelp) {
-        int hw = 800;
-        int hh = 600;
-        SDL_Rect helpRect = {SCREEN_WIDTH/2 - hw/2, SCREEN_HEIGHT/2 - hh/2, hw, hh};
-        SDL_SetRenderDrawColor(ren, 30, 30, 30, 250);
-        SDL_SetRenderDrawBlendMode(ren, SDL_BLENDMODE_BLEND);
-        SDL_RenderFillRect(ren, &helpRect);
-        if (app.texManual) {
-            SDL_RenderCopy(ren, app.texManual, NULL, &helpRect);
-        } else {
-            render_text(ren, "Please save the manual image as 'manual.png' in the folder.", helpRect.x + 20, helpRect.y + 20, app.fontLarge, tcWhite);
-        }
-    }
+
 
     if (app.state == STATE_MENU) {
         // Draw the poster background image
@@ -684,6 +671,27 @@ void draw_game_screen(SDL_Renderer* ren, int mx, int my, int m_click) {
                 add_log("Completed Exchange.");
                 advance_turn();
             }
+        }
+    }
+
+    // Help block overlay
+    if (app.showHelp) {
+        int hw = 800;
+        int hh = 600;
+        SDL_Rect helpRect = {SCREEN_WIDTH/2 - hw/2, SCREEN_HEIGHT/2 - hh/2, hw, hh};
+        SDL_SetRenderDrawColor(ren, 30, 30, 30, 250);
+        SDL_SetRenderDrawBlendMode(ren, SDL_BLENDMODE_BLEND);
+        SDL_RenderFillRect(ren, &helpRect);
+        if (app.texManual) {
+            SDL_RenderCopy(ren, app.texManual, NULL, &helpRect);
+        } else {
+            render_text(ren, "Please save the manual image as 'manual.png' in the folder.", helpRect.x + 20, helpRect.y + 20, app.fontLarge, tcWhite);
+        }
+        
+        SDL_Rect closeBtn = {helpRect.x + hw - 40, helpRect.y + 10, 30, 30};
+        int hClose = (mx>=closeBtn.x && mx<=closeBtn.x+closeBtn.w && my>=closeBtn.y && my<=closeBtn.y+closeBtn.h);
+        if (render_button(ren, "X", closeBtn, hClose, 0) && m_click) {
+            app.showHelp = 0;
         }
     }
 
