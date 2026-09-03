@@ -77,7 +77,7 @@ int  game_reveal_and_replace(Game* g, int playerIdx, Role revealed); // returns 
 int  game_lose_influence(Game* g, int playerIdx, int whichSlot);     // 0/1
 int  game_choose_alive_slot(const Player* p); // utility for UI auto choice if only one alive
 
-/* ==== Utility ==== */
+
 const char* role_name(Role r);
 
-#endif /* COUP_GAME_H */
+#endif
