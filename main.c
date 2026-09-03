@@ -5,7 +5,9 @@
 #include <time.h>
 
 int main(void) {
+    
     srand((unsigned)time(NULL));
+    
     Game g;
     ui_set_player_names(&g);
 
@@ -21,5 +23,6 @@ int main(void) {
     puts("Bluff/counter/challenge flows with reveals and replacements are fully implemented.\n");
 
     ui_run_game_loop(&g);
+    
     return 0;
 }
