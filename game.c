@@ -4,7 +4,6 @@
 #include <string.h>
 #include <time.h>
 
-/* ===== Utility ===== */
 
 static void swap_roles(Role* a, Role* b) { Role t=*a; *a=*b; *b=t; }
 
@@ -46,7 +45,6 @@ int game_next_alive_after(const Game* g, int idx) {
     return idx; // should not happen if at least one alive
 }
 
-/* ===== Deck / setup ===== */
 
 void game_shuffle_deck(Game* g) {
     for (int i=g->deckTop-1;i>0;i--) {
@@ -61,7 +59,7 @@ void game_init(Game* g, int playerCount) {
     if (playerCount > MAX_PLAYERS) playerCount = MAX_PLAYERS;
     g->playerCount = playerCount;
 
-    // Build deck: 3 copies of each role
+   
     int k=0;
     for (int r=0;r<ROLE_COUNT;r++) {
         for (int c=0;c<DECK_COPIES_PER_ROLE;c++) {
@@ -71,7 +69,7 @@ void game_init(Game* g, int playerCount) {
     g->deckTop = DECK_SIZE;
     game_shuffle_deck(g);
 
-    // Temp names; the UI will overwrite with user input
+    
     for (int i=0;i<playerCount;i++) {
         snprintf(g->players[i].name, MAX_NAME_LEN, "Player%d", i+1);
     }
