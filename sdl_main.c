@@ -194,9 +194,6 @@ void do_exchange_draw() {
     app.state = STATE_EXCHANGE_CHOICE;
 }
 
-// ---------------------------------------------------------
-// Drawing logic
-// ---------------------------------------------------------
 void render_text(SDL_Renderer* ren, const char* text, int x, int y, TTF_Font* font, SDL_Color color) {
     SDL_Surface* srf = TTF_RenderText_Blended(font, text, color);
     if (srf) {
@@ -698,9 +695,7 @@ void draw_game_screen(SDL_Renderer* ren, int mx, int my, int m_click) {
     SDL_RenderPresent(ren);
 }
 
-// ---------------------------------------------------------
-// Main
-// ---------------------------------------------------------
+
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
